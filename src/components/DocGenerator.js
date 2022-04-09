@@ -6,8 +6,6 @@ import { styled } from "@mui/system";
 const Report = ({ forwardRef }) => (
   <div
     // Apply the ref here to the report element.
-    // IMPORTANT! From here down, try to use basic HTML elements with minimal
-    // styling for the best output results.
     ref={forwardRef}
     style={{
       fontFamily: "Arial",
