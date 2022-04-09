@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 
 const pages = [
   { title: "Home", to: "/" },
-  { title: "Doc Generator", to: "/docgen" },
+  { title: "Mine", to: "/mine" },
+  { title: "Fancy", to: "/fancy" },
 ];
 
 const Navbar = () => (
