@@ -9,7 +9,10 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const pages = [{ title: "Home", to: "/" }];
+const pages = [
+  { title: "Home", to: "/" },
+  { title: "Doc Generator", to: "/docgen" },
+];
 
 const Navbar = () => (
   <AppBar position="static">
