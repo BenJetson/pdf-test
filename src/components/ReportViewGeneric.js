@@ -53,6 +53,7 @@ const Button = ({ href, disabled, children, ...props }) => {
     border: "none",
     outline: "none",
     fontSize: "inherit",
+    fontWeight: 500,
     textDecoration: "none",
     display: "block",
     padding: "0.75rem",
