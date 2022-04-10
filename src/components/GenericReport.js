@@ -1,12 +1,12 @@
 import ReportGenerator from "./ReportGenerator";
-import ReportViewMUI from "./ReportViewMUI";
+import ReportViewGeneric from "./ReportViewGeneric";
 
-const MyReport = () => {
+const GenericReport = () => {
   return (
     <ReportGenerator
       title="My Report"
       filename="mine.pdf"
-      component={ReportViewMUI}
+      component={ReportViewGeneric}
     >
       {/* You could dynamically generate this ... this example does not. */}
       <h1>Report</h1>
@@ -35,4 +35,4 @@ const MyReport = () => {
   );
 };
 
-export default MyReport;
+export default GenericReport;

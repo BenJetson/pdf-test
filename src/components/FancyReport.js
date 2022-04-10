@@ -1,4 +1,4 @@
-import Report from "./Report";
+import ReportGenerator from "./ReportGenerator";
 import React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import ReportViewMUI from "./ReportViewMUI";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -73,7 +74,11 @@ function CustomizedTables() {
 }
 
 const FancyReport = () => (
-  <Report title="Fancy Report" filename="fancy.pdf">
+  <ReportGenerator
+    title="Fancy Report"
+    filename="fancy.pdf"
+    component={ReportViewMUI}
+  >
     {/* You could dynamically generate this ... this example does not. */}
     <h1>Report</h1>
     <p>
@@ -107,7 +112,7 @@ const FancyReport = () => (
     <CustomizedTables />
     <h2>Table 5</h2>
     <CustomizedTables />
-  </Report>
+  </ReportGenerator>
 );
 
 export default FancyReport;

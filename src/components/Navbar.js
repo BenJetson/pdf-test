@@ -14,6 +14,7 @@ const pages = [
   { title: "Mine", to: "/mine" },
   { title: "Fancy", to: "/fancy" },
   { title: "Vivid", to: "/vivid" },
+  { title: "Generic", to: "/generic" },
 ];
 
 const Navbar = () => (

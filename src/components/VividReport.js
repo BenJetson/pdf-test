@@ -1,8 +1,9 @@
-import Report from "./Report";
+import ReportGenerator from "./ReportGenerator";
 import base64img from "./data/base64img.json";
 
 import circuitImg from "./data/chris-ried-bN5XdU-bap4-unsplash.jpg";
 import { ReactComponent as ReactLogo } from "./data/react.svg";
+import ReportViewMUI from "./ReportViewMUI";
 
 const Image = ({ src, alt, style = {} }) => (
   <img
@@ -21,7 +22,11 @@ const Image = ({ src, alt, style = {} }) => (
 
 const VividReport = () => {
   return (
-    <Report title="Vivid Report" filename="vivid.pdf">
+    <ReportGenerator
+      title="Vivid Report"
+      filename="vivid.pdf"
+      component={ReportViewMUI}
+    >
       {/* You could dynamically generate this ... this example does not. */}
       <h1>Report</h1>
       <p>This is a report for you.</p>
@@ -98,7 +103,7 @@ const VividReport = () => {
         All that will remain is the red border that this image element has
         around it. The cards have magically disappeared. <em>Tragic</em>.
       </p>
-    </Report>
+    </ReportGenerator>
   );
 };
 
