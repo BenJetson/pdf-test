@@ -1,3 +1,5 @@
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import React from "react";
 import {
   STATUS_PREVIEW,
@@ -6,119 +8,99 @@ import {
   STATUS_READY,
 } from "./ReportStatus";
 
-const Alert = ({ status, statusMessage }) => (
-  <div
-    style={{
-      margin: "1rem 0",
-      padding: "1rem",
-      borderRadius: "10px",
-      width: "100%",
-      color: "#0C3B69",
-      backgroundColor: "#B3E5FC",
-      ...{
-        [STATUS_GENERATING]: {
-          color: "#593700",
-          backgroundColor: "#FBC02D",
-        },
-        [STATUS_ERROR]: {
-          color: "#5D0B2B",
-          backgroundColor: "#F8BBD0",
-        },
-        [STATUS_READY]: {
-          color: "#1A441C",
-          backgroundColor: "#C8E6C9",
-        },
-      }[status],
-    }}
-  >
-    {statusMessage}
-  </div>
-);
+const Alert = styled.div`
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 10px;
 
-const ButtonRow = ({ children }) => (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "row",
-      margin: "1rem 0",
-    }}
-  >
-    {children}
-  </div>
-);
+  color: ${(props) =>
+    ({
+      [STATUS_PREVIEW]: "#0C3B69",
+      [STATUS_GENERATING]: "#593700",
+      [STATUS_ERROR]: "#5D0B2B",
+      [STATUS_READY]: "#1A441C",
+    }[props.status])};
+  background-color: ${(props) =>
+    ({
+      [STATUS_PREVIEW]: "#B3E5FC",
+      [STATUS_GENERATING]: "#FBC02D",
+      [STATUS_ERROR]: "#F8BBD0",
+      [STATUS_READY]: "#C8E6C9",
+    }[props.status])}; ;
+`;
 
-const Button = ({ href, disabled, children, ...props }) => {
-  /** @type React.CSSProperties */
-  const styles = {
-    border: "none",
-    outline: "none",
-    fontSize: "inherit",
-    fontWeight: 500,
-    textDecoration: "none",
-    display: "block",
-    padding: "0.75rem",
-    borderRadius: "0.5rem",
-    margin: "0 1rem 0 0",
-    color: disabled ? "#555" : "#fff",
-    background: "none",
-    cursor: disabled ? "default" : "pointer",
-    backgroundColor: disabled ? "#ccc" : "#512DA8",
-    boxShadow: disabled
-      ? "none"
-      : `
-        0px 3px 1px -2px rgba(0,0,0,0.2),
-        0px 2px 2px 0px rgba(0,0,0,0.14),
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+`;
+
+const buttonStyles = (props) => css`
+  display: block;
+  padding: 0.75rem;
+  margin: 0 1rem 0 0;
+
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+
+  font-size: inherit;
+  font-weight: 500;
+  text-decoration: none;
+
+  cursor: ${props.disabled ? "default" : "pointer"};
+  color: ${props.disabled ? "#555" : "#fff"};
+  background: none;
+  background-color: ${props.disabled ? "#ccc" : "#512DA8"};
+  box-shadow: ${props.disabled
+    ? "none"
+    : `
+        0px 3px 1px -2px rgba(0,0,0,0.2);
+        0px 2px 2px 0px rgba(0,0,0,0.14);
         0px 1px 5px 0px rgba(0,0,0,0.12)
-      `,
-  };
+      `};
+`;
 
+const LinkButton = styled.a`
+  ${buttonStyles}
+`;
+const Button = styled.button`
+  ${buttonStyles}
+`;
+
+const AutoButton = ({ href, disabled, children, ...props }) => {
   return href && !disabled ? (
-    <a style={styles} href={href} {...props}>
+    <LinkButton href={href} {...props}>
       {children}
-    </a>
+    </LinkButton>
   ) : (
-    <button style={styles} disabled={disabled} {...props}>
+    <Button disabled={disabled} {...props}>
       {children}
-    </button>
+    </Button>
   );
 };
 
-const PreviewBox = ({ children }) => (
-  <div
-    style={{
-      margin: "2rem 0",
-      overflow: "scroll",
-      maxHeight: "400px",
-      border: "1px solid #aaa",
-      backgroundColor: "#ddd",
-      userSelect: "none",
-      cursor: "default",
-    }}
-  >
-    {children}
-  </div>
-);
+const PreviewBox = styled.div`
+  margin: 2rem 0;
+  overflow: scroll;
+  max-height: 400px;
+  border: 1px solid #aaa;
+  background-color: #ddd;
+  user-select: none;
+  cursor: default;
+`;
 
-const Paper = ({ children }) => (
-  <div
-    style={{
-      display: "inline-block",
-      padding: "1in",
-      width: "8.5in",
-      minHeight: "11in",
-      borderRadius: "10px",
-      margin: "2rem",
-      backgroundColor: "#fff",
-      boxShadow: `
-        rgba(0, 0, 0, 0.2) 0px 4px 5px -2px,
-        rgba(0, 0, 0, 0.14) 0px 7px 10px 1px,
-        rgba(0, 0, 0, 0.12) 0px 2px 16px 1px
-      `,
-    }}
-  >
-    {children}
-  </div>
-);
+const Paper = styled.div`
+  display: inline-block;
+  padding: 1in;
+  width: 8.5in;
+  min-height: 11in;
+  border-radius: 10px;
+  margin: 2rem;
+  background-color: #fff;
+  boxshadow: rgba(0, 0, 0, 0.2) 0px 4px 5px -2px,
+    rgba(0, 0, 0, 0.14) 0px 7px 10px 1px, rgba(0, 0, 0, 0.12) 0px 2px 16px 1px;
+`;
 
 const ReportViewGeneric = ({
   title,
@@ -132,19 +114,19 @@ const ReportViewGeneric = ({
 }) => (
   <div>
     <h1>{title}</h1>
-    <Alert status={status} statusMessage={statusMessage} />
+    <Alert status={status}>{statusMessage}</Alert>
 
     <ButtonRow>
       <Button onClick={generate} disabled={status !== STATUS_PREVIEW}>
         Generate
       </Button>
-      <Button
+      <AutoButton
         href={downloadURL}
         download={filename}
         disabled={status !== STATUS_READY}
       >
         Download
-      </Button>
+      </AutoButton>
     </ButtonRow>
 
     <h2>Preview</h2>
