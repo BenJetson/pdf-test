@@ -13,6 +13,7 @@ const pages = [
   { title: "Home", to: "/" },
   { title: "Mine", to: "/mine" },
   { title: "Fancy", to: "/fancy" },
+  { title: "Vivid", to: "/vivid" },
 ];
 
 const Navbar = () => (
