@@ -56,7 +56,7 @@ const ReportGenerator = ({
         {
           [STATUS_PREVIEW]: "Review the report preview before generating.",
           [STATUS_GENERATING]: "Generating report PDF, please wait.",
-          [STATUS_ERROR]: "There was an problem when generating your report.",
+          [STATUS_ERROR]: "There was a problem when generating your report.",
           [STATUS_READY]: "Success! Your report download is ready.",
         }[status]
       }
