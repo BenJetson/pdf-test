@@ -8,6 +8,15 @@ import {
   STATUS_READY,
 } from "./ReportStatus";
 
+const IconWrapper = styled.span`
+  font-size: ${(props) => (props.size ? props.size + "pt" : "inherit")};
+  margin-right: 0.3em;
+`;
+
+const Icon = ({ code, size }) => (
+  <IconWrapper size={size}>{String.fromCharCode(code)}</IconWrapper>
+);
+
 const Alert = styled.div`
   margin: 1rem 0;
   padding: 1rem;
@@ -118,14 +127,14 @@ const ReportViewGeneric = ({
 
     <ButtonRow>
       <Button onClick={generate} disabled={status !== STATUS_PREVIEW}>
-        Generate
+        <Icon code={0x25b6} /> Generate
       </Button>
       <AutoButton
         href={downloadURL}
         download={filename}
         disabled={status !== STATUS_READY}
       >
-        Download
+        <Icon code={0x2913} /> Download
       </AutoButton>
     </ButtonRow>
 
